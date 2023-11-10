@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Candidate Profile - Alice</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.gstatic.com" rel="preconnect">
+  <link
+    href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+    rel="stylesheet">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="assets/vendor/quill/quill.snow.css" rel="stylesheet">
+  <link href="assets/vendor/quill/quill.bubble.css" rel="stylesheet">
+  <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="assets/css/style.css" rel="stylesheet">
+  <style>
+    #simulation {
+      box-shadow: none;
+      background: white;
+      border-radius: 20px;
+      position: fixed;
+      max-height: 90%;
+      bottom: 5px;
+      box-shadow: 0px 0 30px rgba(1, 41, 112, 0.1);
+      right: 15px;
+      z-index: 999;
+      overflow: hidden;
+    }
+
+    .card-body.holder {
+      overflow-y: auto;
+      max-height: 100%;
+      padding: 5px;
+    }
+
+    .card-body.client {
+      background-color: #dac4f1;
+      color: black;
+      padding: 20px;
+      box-shadow: 0px 0 30px rgba(1, 41, 112, 0.1);
+      width: 70%;
+      float: right;
+      box-shadow: 0px 0 30px rgba(1, 41, 112, 0.1);
+    }
+
+    .card-body.server {
+      background-color: #ffffff;
+      padding: 20px;
+      width: 90%;
+      box-shadow: 0px 0 30px rgba(1, 41, 112, 0.1);
+    }
+
+    #simulation .list-group-item {
+
+      border: none;
+      background: none;
+    }
+
+    #simulation #textSender:disabled {
+      border: none;
+      filter: grayscale();
+    }
+
+    #copilot #options {
+      margin: auto;
+    }
+
+    #simulation .card-title {
+      font-family: "Nunito", sans-serif;
+      font-weight: bold;
+      padding: 0;
+      margin: 0;
+    }
+
+    #simulation .card-title img {
+
+      margin-left: 5px;
+    }
+
+    #simulation .card-title button {
+      float: right;
+      color: #701ec5;
+      padding: 10px;
+      margin-right: 5px;
+      font-size: 20px;
+    }
+
+    #copilot #options {
+      display: flex;
+      flex-direction: row;
+      justify-content: end;
+    }
+
+    #copilot #options button {
+      margin: 5px;
+      border-radius: 5px;
+      transition: ease 1s;
+    }
+
+    #textSender {
+      padding: 4px;
+    }
+
+    #copilot #progress-options {
+      display: none;
+      margin: auto;
+      width: max-content;
+    }
+
+    #copilot #options button:hover,
+    #copilot #progress-options button:hover {
+      color: #701ec5;
+      background: white;
+      box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.1);
+    }
+
+    #copilot .btn.btn-outline-primary {
+      color: #701ec5;
+      border-color: #701ec5;
+    }
+
+    @media (min-width: 576px) {
+      .col-chatroom {
+        width: 450px;
+        /* Set a fixed width for larger screens (e.g., sm and above) */
+      }
+    }
+
+    #copilot p {
+      margin: auto;
+      text-align: center;
+      margin-bottom: 5px;
+    }
+  </style>
+  <!-- =======================================================
+  * Template Name: NiceAdmin
+  * Updated: Sep 18 2023 with Bootstrap v5.3.2
+  * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="header fixed-top d-flex align-items-center">
+
+    <div class="d-flex align-items-center justify-content-between">
+      <a href="index.html" class="logo d-flex align-items-center">
+        <img src="assets/img/logo.png" alt="">
+        <span class="d-none d-lg-block">VetNinja</span>
+      </a>
+      <i class="bi bi-list toggle-sidebar-btn"></i>
+    </div><!-- End Logo -->
+
+    <div class="search-bar">
+      <form class="search-form d-flex align-items-center" method="POST" action="#">
+        <input type="text" name="query" placeholder="Search" title="Enter search keyword">
+        <button type="submit" title="Search"><i class="bi bi-search"></i></button>
+      </form>
+    </div><!-- End Search Bar -->
+
+    <nav class="header-nav ms-auto">
+      <ul class="d-flex align-items-center">
+
+        <li class="nav-item d-block d-lg-none">
+          <a class="nav-link nav-icon search-bar-toggle " href="#">
+            <i class="bi bi-search"></i>
+          </a>
+        </li><!-- End Search Icon-->
+
+        <li class="nav-item dropdown">
+
+          <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
+            <i class="bi bi-bell"></i>
+            <span class="badge bg-primary badge-number">4</span>
+          </a><!-- End Notification Icon -->
+
+          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
+            <li class="dropdown-header">
+              You have 2 new notifications
+              <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+
+            <li class="notification-item">
+              <i class="bi bi-exclamation-circle text-warning"></i>
+              <div>
+                <h4>Jobs</h4>
+                <p>You have reached 100 candidates for Job Event Manager</p>
+                <p>30 min. ago</p>
+              </div>
+            </li>
+
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            <li class="notification-item">
+              <i class="bi bi-exclamation-circle text-warning"></i>
+              <div>
+                <h4>Promotions</h4>
+                <p>You received 30% discount for the next purchase!</p>
+                <p>30 min. ago</p>
+              </div>
+            </li>
+
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            <li class="dropdown-footer">
+              <a href="#">Show all notifications</a>
+            </li>
+
+          </ul><!-- End Notification Dropdown Items -->
+
+        </li><!-- End Notification Nav -->
+
+        <li class="nav-item dropdown pe-3">
+
+          <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
+            <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
+            <span class="d-none d-md-block dropdown-toggle ps-2">John Doe</span>
+          </a><!-- End Profile Iamge Icon -->
+
+          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+            <li class="dropdown-header">
+              <h6>John Doe</h6>
+              <span>Web Designer</span>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+
+            <li>
+              <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+                <i class="bi bi-person"></i>
+                <span>My Profile</span>
+              </a>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+
+            <li>
+              <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+                <i class="bi bi-gear"></i>
+                <span>Account Settings</span>
+              </a>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+
+            <li>
+              <a class="dropdown-item d-flex align-items-center" href="pages-faq.html">
+                <i class="bi bi-question-circle"></i>
+                <span>Need Help?</span>
+              </a>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+
+            <li>
+              <a class="dropdown-item d-flex align-items-center" href="#">
+                <i class="bi bi-box-arrow-right"></i>
+                <span>Sign Out</span>
+              </a>
+            </li>
+
+          </ul><!-- End Profile Dropdown Items -->
+        </li><!-- End Profile Nav -->
+
+      </ul>
+    </nav><!-- End Icons Navigation -->
+
+  </header><!-- End Header -->
+  <!-- ======= Sidebar ======= -->
+  <aside id="sidebar" class="sidebar">
+    <ul class="sidebar-nav" id="sidebar-nav">
+      <li class="nav-item">
+        <a class="nav-link " href="index.html">
+          <i class="bi bi-house-fill"></i>
+          <span>Home</span>
+        </a>
+      </li><!-- End Dashboard Nav -->
+      <li class="nav-heading">Pages</li>
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="users-profile.html">
+          <i class="bi bi-bag-fill"></i>
+          <span>Jobs</span>
+        </a>
+      </li><!-- End Profile Page Nav -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="pages-faq.html">
+          <i class="bi bi-question-circle"></i>
+          <span>F.A.Q</span>
+        </a>
+      </li><!-- End F.A.Q Page Nav -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="pages-contact.html">
+          <i class="bi bi-envelope"></i>
+          <span>Contact</span>
+        </a>
+      </li><!-- End Contact Page Nav -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="pages-register.html">
+          <i class="bi bi-card-list"></i>
+          <span>Account</span>
+        </a>
+      </li><!-- End Register Page Nav -->
+    </ul>
+  </aside><!-- End Sidebar-->
+
+  <main id="main" class="main">
+
+    <div class="pagetitle">
+      <h1>Alice's Profile</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item"><a href="job-recruit-view.html">Track Applicants</a></li>
+          <li class="breadcrumb-item active">Candidate Profile</li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+
+    <section class="section profile">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="col-xl-8">
+
+            <div class="card">
+              <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
+
+                <img src="assets/img/messages-1.jpg" alt="Profile" class="rounded-circle">
+                <h2>Alice</h2>
+                <h3>Applicant ID: A10323</h3>
+                <h3>Total Score</h3>
+                <h1 id="score_large">40%</h1>
+                <h3 id="rank">Rank: 60/100</h3>
+                <h3>Status: <span class="badge bg-warning">PENDING</span></h3>
+                <h3>Available attachments:</h3>
+                <div class="pdf-docs mt-2">
+                  <button type="submit" class="btn btn-outline-secondary">Resume.pdf<i
+                      class="bi bi-file-earmark-pdf-fill"></i></button>
+                  <button type="submit" class="btn btn-outline-secondary">Academic Transcript.pdf<i
+                      class="bi bi-file-earmark-pdf-fill"></i></button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="col-xl-8">
+
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Scoring Breakdown</h5>
+                <!-- Default Accordion -->
+                <div class="accordion" id="accordionExample0">
+                </div><!-- End Default Accordion Example -->
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Open-ended Assessment</h5>
+                <!-- Default Accordion -->
+                <div class="accordion" id="accordionExample">
+                  <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingOne">
+                      <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        Question #1
+                      </button>
+                    </h2>
+                    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+                      data-bs-parent="#accordionExample">
+                      <div class="accordion-body">
+                        <strong>You are tasked with conducting an interview with a VIP speaker from a multiracial
+                          background. You have been given a brief biography of the speaker, but you have not had the
+                          opportunity to meet them in person. The speaker is scheduled to arrive in 15 minutes. How
+                          would you prepare for the interview?</strong>
+                        <br><br>
+                        <strong>John Doe's Answer </strong> I don't know.
+                        <br>
+                        <strong>VN Copilot Feedback </strong> The candidate does not able to answer, this indicates the
+                        absence of communication skills.
+                      </div>
+                    </div>
+                  </div>
+                  <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingTwo">
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        Question #2
+                      </button>
+                    </h2>
+                    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+                      data-bs-parent="#accordionExample">
+                      <div class="accordion-body">
+                        <strong>You are in a party of 10 girls, how would you handle the
+                          situation?</strong>
+                        <br><br>
+                        <strong>John Doe's Answer </strong> I don't know.
+                        <br>
+                        <strong>VN Copilot Feedback </strong> The candidate does not able to answer, this indicates the
+                        absence of communication skills.
+                      </div>
+                    </div>
+                  </div>
+                  <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingThree">
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                        Question #3
+                      </button>
+                    </h2>
+                    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
+                      data-bs-parent="#accordionExample">
+                      <div class="accordion-body">
+                        <strong>You are in a party of 10 girls, how would you handle the
+                          situation?</strong>
+                        <br><br>
+                        <strong>John Doe's Answer </strong> I don't know.
+                        <br>
+                        <strong>VN Copilot Feedback </strong> The candidate does not able to answer, this indicates the
+                        absence of communication skills.
+                      </div>
+                    </div>
+                  </div>
+                </div><!-- End Default Accordion Example -->
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Personal Information</h5>
+                <p><strong>Full Name: </strong>John Doe</p>
+                <p><strong>Email:</strong> johndoe@example.com</p>
+                <p><strong>Gender:</strong> Male</p>
+                <p><strong>Phone No:</strong> +601234567</p>
+                <p><strong>Address:</strong> 12354, Sdt</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <!-- ChatRoom -->
+
+        <div id="simulation" class="card col-sm-6 min-w-50 col-chatroom">
+          <div class="card-title">
+            <img src="assets/img/logo.png" alt="">
+            VN Copilot
+            <button id="copilot-close" type="submit" class="btn"><i class="bi bi-power"></i></button>
+
+          </div>
+
+          <div class="card-body holder">
+
+            <ul id='messages' class="list-group">
+              <li class="list-group-item">
+              </li>
+            </ul>
+
+          </div>
+          <form id="copilot">
+            <div id="progress-options" class="input-group mb-3">
+              <button type="button" class="btn btn-outline-primary mx-auto"><i
+                  class="bi bi-stop-fill"></i>&nbsp;&nbsp;Stop
+                Responding</button>
+            </div>
+            <div id="options" class="input-group mb-3">
+              <button type="button" class="btn btn-outline-primary">Summarise Candidates</button>
+              <button type="button" class="btn btn-outline-primary">Correct Your Marking</button>
+            </div>
+            <div class="input-group p-1 mb-3">
+              <input type="text" class="form-control" id="messageText" autocomplete="off"
+                placeholder="Ask me anything...">
+              <div class="input-group-append">
+                <button class="btn" id="textSender" type="submit"><img width="40px" src="assets/img/send.svg"
+                    alt=""></button>
+              </div>
+            </div>
+            <p>AI generated responses may not be accurate.</p>
+
+          </form>
+
+          <script>
+            $(document).ready(function () {
+              var q = 0;
+              // var q = confirm("Use audio mode? ") ? 1 : 0;
+              if (q) {
+                $("#textBox").hide();
+              } else
+                $("#recorder").hide();
+              var protocol = window.location.protocol === 'https:' ? 'wss' : 'ws';
+              var hostname = window.location.hostname;
+              var port = window.location.port;
+              var url = window.location.href;
+              var queryVal = url.split('?q=')
+              if (queryVal.length > 1)
+                queryVal = queryVal[1];
+              else
+                queryVal = 1;
+              var socket = undefined;
+              function startSession() {
+                var path = '/assessment?q=' + queryVal;
+                var socketURL = `${protocol}://${hostname}:${port}${path}`;
+                socket = new WebSocket(socketURL);
+
+                socket.onopen = function (event) {
+                  console.log("Opened!");
+                }
+                socket.onerror = function () {
+                  alert("Please login to proceed");
+                  location.replace("/login.html");
+                }
+                socket.onmessage = function (event) {
+
+                  var isJSON = true;
+                  try {
+                    JSON.parse(event.data);
+                  } catch (e) {
+                    isJSON = false;
+                  }
+                  var contentData = "";
+                  if (isJSON) {
+                    var response = JSON.parse(event.data);
+                    if ('progress' in response) {
+                      $('#progress').css('width', 100 * response.progress + '%');
+                    }
+                    else {
+                      console.log(response)
+                      var display = undefined;
+                      if (typeof (response.message) != 'string') {
+                        console.log(response.message)
+                        cur = 0;
+                        score_total = 0;
+                        const xmlData = response.message.candidate_brief
+                        // Parse XML and extract criteria using jQuery
+                        const $xml = $($.parseXML(xmlData));
+                        const criteria = $xml.find('Criterion');
+
+                        $("#accordionExample0").html("")
+                        criteria.each(function () {
+                          cur++;
+                          const title = $(this).find('Title').text();
+                          const score = $(this).find('Score').text();
+                          score_total += parseInt(score);
+                          const description = $(this).find('Description').text();
+                          const resume = $(this).find('Resume').text();
+                          const assessment = $(this).find('Assessment').text();
+                          var score_html = "";
+                          for (var j = 0; j < score; j++) {
+                            score_html += `<i class="bi bi-star-fill"></i>`;
+                          }
+                          for (var j = score; j < 5; j++) {
+                            score_html += `<i
+                        class="bi bi-star"></i>`;
+                          }
+                          var html = `<div class="accordion-item">
+                  <h2 class="accordion-header" id="scoreHeading-${cur}">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                      data-bs-target="#scoreCollapse-${cur}" aria-expanded="false" aria-controls="scoreCollapse-${cur}">
+                      <strong>Criterion #${cur}: ${title}</strong> &nbsp;${score_html}
+                    </button>
+                  </h2>
+                  <div id="scoreCollapse-${cur}" class="accordion-collapse collapse" aria-labelledby="scoreHeading-${cur}"
+                    data-bs-parent="#accordionExample0">
+                    <div class="accordion-body">
+                      ${description}
+                      <br><br>
+                      <strong>Justification</strong>
+                      <br>
+                      <ul>
+                        <li>In CV: ${resume}</li>
+                        <li>In Open-ended assessment: ${assessment}</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>`;
+                          $("#accordionExample0").append(html)
+                        });
+
+                        $("#score_large").text((Math.round(score_total / cur * 20 * 100) / 100).toFixed(2) + "%");
+
+                        $("#rank").text("Rank: " + (100 - Math.round(score_total / cur * 20)) + "/100");
+
+                        //  console.log(JSON.parse(response.message.candidate_brief))
+                        display = response.message.feedback;
+                      } else
+                        display = response.message.replace(/\*(.*?)\*/g, '<b>$1</b>');
+
+                      $("#simulation #textSender").attr("disabled", false);
+                      $("#progress-options").hide();
+                      $("#options").show();
+                      var message = `
+                    <li class="list-group-item">
+                      <div class="card-body server">
+                        ${display}
+                      </div>
+                    </li>`;
+                      $('#messages').append(message);
+                      $(".card-body.holder").animate({ scrollTop: $(".card-body.holder")[0].scrollHeight }, 1000);
+
+                    }
+
+                  }
+                };
+
+              }
+              startSession();
+              $("#copilot-close").click(function (e) {
+                e.preventDefault();
+                if ($("#copilot").attr('status') == 'closed') {
+                  $(".card-body.holder").show(600);
+                  $("#copilot").show(600);
+                  $("#copilot-close").css('color', '#701ec5');
+                  $("#copilot").attr('status', 'open');
+                }
+                else {
+                  $(".card-body.holder").hide(600);
+                  $("#copilot").hide(600);
+                  $("#copilot-close").css('color', '#999');
+                  $("#copilot").attr('status', 'closed');
+                }
+              });
+              $("#options button").click(function (event) {
+                event.preventDefault();
+                $("#messageText").val($(this).text())
+                submitQuest();
+                $("#simulation #textSender").attr("disabled", true);
+
+              });
+              $("#simulation #textSender").click(function (event) {
+                event.preventDefault();
+                submitQuest();
+                $(this).attr("disabled", true);
+              });
+              function submitQuest() {
+                var input = $("#messageText").val()
+                if (input.length == 0)
+                  return;
+                socket.send(input)
+                var message = `
+                    <li class="list-group-item">
+                      <div class="card-body client">
+                        ${input}
+                      </div>
+                    </li>`;
+                $('#messages').append(message);
+                $("#messageText").val("");
+                $("#progress-options").show();
+                $("#options").hide();
+              }
+
+            });
+          </script>
+
+        </div>
+      </div>
+    </section>
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer" class="footer">
+    <div class="copyright">
+      &copy; Copyright <strong><span>VetNinja</span></strong>. All Rights Reserved
+    </div>
+    <div class="credits">
+      <!-- All the links in the footer should remain intact. -->
+      <!-- You can delete the links only if you purchased the pro version. -->
+      <!-- Licensing information: https://bootstrapmade.com/license/ -->
+      <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
+      Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+    </div>
+  </footer><!-- End Footer -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+      class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/chart.js/chart.umd.js"></script>
+  <script src="assets/vendor/echarts/echarts.min.js"></script>
+  <script src="assets/vendor/quill/quill.min.js"></script>
+  <script src="assets/vendor/simple-datatables/simple-datatables.js"></script>
+  <script src="assets/vendor/tinymce/tinymce.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>

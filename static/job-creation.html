@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Forms / Layouts - VetNinja Bootstrap Template</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.gstatic.com" rel="preconnect">
+  <link
+    href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+    rel="stylesheet">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="assets/vendor/quill/quill.snow.css" rel="stylesheet">
+  <link href="assets/vendor/quill/quill.bubble.css" rel="stylesheet">
+  <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="assets/css/style.css?v=2" rel="stylesheet">
+  <style>
+  </style>
+  <style>
+    .datatable-wrapper.no-footer .datatable-container {
+      overflow-x: scroll;
+    }
+
+    #messages {
+      overflow-y: auto;
+      max-height: 80vh;
+    }
+
+    .card-title {
+      margin-top: 5px;
+      padding: 10px 0 10px 0;
+      font-size: 18px;
+      font-weight: 500;
+      color: #701ec5;
+      font-family: "Poppins", sans-serif;
+      margin-bottom: 0;
+    }
+
+    .card-desc {
+      margin: 0;
+      margin-top: 5px;
+      font-size: 18px;
+      font-weight: 500;
+      color: #701ec5;
+    }
+
+    .criteria-list {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
+
+    .criteria-list button {
+      margin: 5px;
+    }
+
+    #pg-1,
+    #pg-2 {
+      max-width: 70%;
+      min-width: 300px;
+      margin: auto;
+    }
+
+    .text-center button {
+      width: 40%;
+      margin: 15px;
+    }
+
+    #pg-2 {
+      display: none;
+    }
+
+    .popup {
+      background-color: rgba(255, 255, 255, 0.5);
+      position: fixed;
+      z-index: 9999;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      display: none;
+      right: 0;
+    }
+
+    .popup .card {
+      padding: 5px 40px 40px 40px;
+      border-radius: 8px;
+      position: absolute;
+      max-width: 650px;
+      min-height: max-content;
+      left: 10%;
+      right: 10%;
+      top: 10%;
+      margin: auto;
+      font-family: "Poppins", sans-serif;
+      text-align: center;
+
+    }
+
+    .popup #close {
+      display: block;
+      margin: 0 0 0 auto;
+      background-color: transparent;
+      font-size: 30px;
+      color: #701ec5;
+      border-radius: 100%;
+      width: 40px;
+      height: 40px;
+      border: none;
+      outline: none;
+      cursor: pointer;
+    }
+
+    .popup h2 {
+      margin-top: -20px;
+    }
+
+    #suggest-alert {
+      display: none;
+    }
+
+    #notifier {
+      position: fixed;
+      z-index: 99999;
+      right: 15px;
+      bottom: 15px;
+      background-color: #431278;
+      display: none;
+    }
+  </style>
+  <!-- =======================================================
+  * Template Name: VetNinja
+  * Updated: Sep 18 2023 with Bootstrap v5.3.2
+  * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body>
+
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="header fixed-top d-flex align-items-center">
+
+    <div class="d-flex align-items-center justify-content-between">
+      <a href="index.html" class="logo d-flex align-items-center">
+        <img src="assets/img/logo.png" alt="">
+        <span class="d-none d-lg-block">VetNinja</span>
+      </a>
+      <i class="bi bi-list toggle-sidebar-btn"></i>
+    </div><!-- End Logo -->
+
+    <div class="search-bar">
+      <form class="search-form d-flex align-items-center" method="POST" action="#">
+        <input type="text" name="query" placeholder="Search" title="Enter search keyword">
+        <button type="submit" title="Search"><i class="bi bi-search"></i></button>
+      </form>
+    </div><!-- End Search Bar -->
+
+    <nav class="header-nav ms-auto">
+      <ul class="d-flex align-items-center">
+
+        <li class="nav-item d-block d-lg-none">
+          <a class="nav-link nav-icon search-bar-toggle " href="#">
+            <i class="bi bi-search"></i>
+          </a>
+        </li><!-- End Search Icon-->
+
+        <li class="nav-item dropdown">
+
+          <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
+            <i class="bi bi-bell"></i>
+            <span class="badge bg-primary badge-number">4</span>
+          </a><!-- End Notification Icon -->
+
+          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
+            <li class="dropdown-header">
+              You have 2 new notifications
+              <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+
+            <li class="notification-item">
+              <i class="bi bi-exclamation-circle text-warning"></i>
+              <div>
+                <h4>Jobs</h4>
+                <p>You have reached 100 candidates for Job Event Manager</p>
+                <p>30 min. ago</p>
+              </div>
+            </li>
+
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            <li class="notification-item">
+              <i class="bi bi-exclamation-circle text-warning"></i>
+              <div>
+                <h4>Promotions</h4>
+                <p>You received 30% discount for the next purchase!</p>
+                <p>30 min. ago</p>
+              </div>
+            </li>
+
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            <li class="dropdown-footer">
+              <a href="#">Show all notifications</a>
+            </li>
+
+          </ul><!-- End Notification Dropdown Items -->
+
+        </li><!-- End Notification Nav -->
+
+        <li class="nav-item dropdown pe-3">
+
+          <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
+            <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
+            <span class="d-none d-md-block dropdown-toggle ps-2">John Doe</span>
+          </a><!-- End Profile Iamge Icon -->
+
+          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+            <li class="dropdown-header">
+              <h6>John Doe</h6>
+              <span>Web Designer</span>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+
+            <li>
+              <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+                <i class="bi bi-person"></i>
+                <span>My Profile</span>
+              </a>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+
+            <li>
+              <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+                <i class="bi bi-gear"></i>
+                <span>Account Settings</span>
+              </a>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+
+            <li>
+              <a class="dropdown-item d-flex align-items-center" href="pages-faq.html">
+                <i class="bi bi-question-circle"></i>
+                <span>Need Help?</span>
+              </a>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+
+            <li>
+              <a class="dropdown-item d-flex align-items-center" href="#">
+                <i class="bi bi-box-arrow-right"></i>
+                <span>Sign Out</span>
+              </a>
+            </li>
+
+          </ul><!-- End Profile Dropdown Items -->
+        </li><!-- End Profile Nav -->
+
+      </ul>
+    </nav><!-- End Icons Navigation -->
+
+  </header><!-- End Header -->
+  <!-- ======= Sidebar ======= -->
+  <aside id="sidebar" class="sidebar">
+    <ul class="sidebar-nav" id="sidebar-nav">
+      <li class="nav-item">
+        <a class="nav-link " href="index.html">
+          <i class="bi bi-house-fill"></i>
+          <span>Home</span>
+        </a>
+      </li><!-- End Dashboard Nav -->
+      <li class="nav-heading">Pages</li>
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="users-profile.html">
+          <i class="bi bi-bag-fill"></i>
+          <span>Jobs</span>
+        </a>
+      </li><!-- End Profile Page Nav -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="pages-faq.html">
+          <i class="bi bi-question-circle"></i>
+          <span>F.A.Q</span>
+        </a>
+      </li><!-- End F.A.Q Page Nav -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="pages-contact.html">
+          <i class="bi bi-envelope"></i>
+          <span>Contact</span>
+        </a>
+      </li><!-- End Contact Page Nav -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="pages-register.html">
+          <i class="bi bi-card-list"></i>
+          <span>Account</span>
+        </a>
+      </li><!-- End Register Page Nav -->
+    </ul>
+  </aside><!-- End Sidebar-->
+
+
+  <main id="main" class="main">
+
+    <div class="pagetitle">
+      <h1>Create New Job</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item">Jobs</li>
+          <li class="breadcrumb-item active">Create New Job</li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+    <section class="section">
+      <div class="row">
+        <div id="pg-1" class="card">
+          <div class="card-body">
+            <!-- Vertical Form -->
+            <form id="job-edit" class="row g-3">
+              <div>
+                <h5 class="card-title">Step 1: Create a New Job Posting</h5>
+              </div>
+              <h5 class="card-desc">Company Profile <button type="button" class="btn p-0" data-bs-toggle="tooltip"
+                  data-bs-placement="top" title="Generated based on your registration details">
+                  <i class="bi bi-info-circle"></i>
+                </button></h5>
+              <div class="col-12">
+                <label for="inputName" class="form-label">Company Name</label>
+                <div class="input-group mb-3">
+                  <input type="text" value="ABC Sdn Bhd" class="form-control" id="inputName" disabled>
+                  <button type="button" class="btn btn-custom"><i class="bi bi-pencil-square"></i></button>
+                </div>
+              </div>
+              <div class="col-12">
+                <label for="inputDesc" class="form-label">Company Description</label>
+                <div class="input-group mb-3">
+                  <input type="text" value="Malaysia SaaS provider" class="form-control" id="inputDesc" disabled>
+                  <button type="button" class="btn btn-custom"><i class="bi bi-pencil-square"></i></button>
+                </div>
+              </div>
+              <div class="col-12">
+                <h5 class="card-desc">Job Details</h5>
+              </div>
+              <div class="col-12">
+                <label for="jobTitle" class="form-label">Job Title</label>
+                <input type="text" class="form-control"
+                  placeholder="Enter your job title here (e.g. Software Programmer)" id="jobTitle">
+              </div>
+              <div class="col-12">
+                <label for="jobDesc" class="form-label">Job Description</label>
+                <textarea class="form-control" rows="6" id="jobDesc"
+                  placeholder="Enter your description here... (e.g. job role)" style="height: 100px"></textarea>
+              </div>
+              <div class="col-12">
+                <label for="jobDesc" class="form-label">Job Requirement</label>
+                <textarea class="form-control" id="jobReq"
+                  placeholder="Enter your requirement here... (e.g. Qualification of Bachelor of Computer Science)"
+                  style="height: 100px"></textarea>
+              </div>
+              <div class="col-12">
+                <label for="criteria" class="form-label">Screening Criteria</label>
+
+                <button type="button" class="btn" data-bs-toggle="tooltip" data-bs-placement="top"
+                  title="Your criteria is private and only visible by you">
+                  <i class="bi bi-lock-fill"></i>
+                </button>
+                <div class="input-group mb-3">
+                  <input type="text" class="form-control" id="criteria-input"
+                    placeholder="Can be required skills... (e.g. teamwork, loyal, ethical)">
+                  <button type="button" id="add-btn" class="btn btn-custom"><i class="bi bi-plus-lg"></i></button>
+                </div>
+                <div class="criteria-list" id="criteria-list">
+
+                </div>
+              </div>
+              <div id="suggest-alert" class="alert alert-secondary alert-dismissible fade show" role="alert">
+                <h6>Suggested based on job details</h6>
+                <div class="criteria-list" id="suggestionDiv">
+
+                </div>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>
+          </div>
+
+          <div class="text-center">
+            <button id="nextBtn" type="submit" class="btn btn-custom">Next >></button>
+            <button type="reset" class="btn btn-secondary">Reset</button>
+          </div>
+          </form><!-- Vertical Form -->
+
+        </div>
+        <div id="pg-2" class="card">
+
+          <div class="card-body">
+            <div>
+              <h5 class="card-title">Step 2: Edit Job Application Form</h5>
+            </div>
+            <h5 class="card-desc">ABC Sdn Bhd - Event Manager Application Form <span
+                class="badge bg-secondary">Preview</span></h5>
+
+
+            <!-- Vertical Form -->
+            <form id="app-form" class="row g-3">
+              <div class="form-group col-12">
+                <label for="inputName" class="form-label">Your Name<a href="#" style="padding-left: 30px;"><i
+                      class="bi bi-pencil-square"></i></a></label>
+                <input type="text" name="name" class="form-control" id="inputName">
+              </div>
+              <div class="form-group col-12">
+                <label for="inputEmail" class="form-label">Email<a href="#" style="padding-left: 30px;"><i
+                      class="bi bi-pencil-square"></i></a></label>
+                <input type="email" name="email" class="form-control" id="inputEmail">
+              </div>
+              <div class="form-group col-12">
+                <label for="inputGender" class="form-label">Gender<a href="#" style="padding-left: 30px;"><i
+                      class="bi bi-pencil-square"></i></a></label>
+                <select class="form-select" id="inputGender" name="gender">
+                  <option value="male">Male</option>
+                  <option value="female">Female</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+              <div class="form-group col-12">
+                <label for="inputPhone" class="form-label">Phone Number<a href="#" style="padding-left: 30px;"><i
+                      class="bi bi-pencil-square"></i></a></label>
+                <input type="text" class="form-control" name="phone" id="inputPhone">
+              </div>
+              <div class="form-group col-12">
+                <label for="inputAddress" class="form-label">Address<a href="#" style="padding-left: 30px;"><i
+                      class="bi bi-pencil-square"></i></a></label>
+                <input type="text" class="form-control" name="address" id="inputAddress" placeholder="1234 Main St">
+              </div>
+              <div class="form-group col-12">
+                <label for="inputWorkMode" class="form-label">Preferred Working Mode:<a href="#"
+                    style="padding-left: 30px;"><i class="bi bi-pencil-square"></i></a></label>
+                <select class="form-select" id="inputWorkMode" name="working_mode">
+                  <option value="male">Work from home</option>
+                  <option value="female">At office</option>
+                  <option value="other">Hybrid</option>
+                </select>
+              </div>
+              <div class="form-group col-12">
+                <label for="extra" class="form-label">Extra Document<a href="#" style="padding-left: 30px;"><i
+                      class="bi bi-pencil-square"></i></a></label>
+                <input type="file" class="form-control" id="extra" name="extra_document">
+              </div>
+              <div class="form-group col-12">
+                <label for="extra" class="form-label">Open-ended Assessment<a href="#" style="padding-left: 30px;"><i
+                      class="bi bi-pencil-square"></i></a></label>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="now"
+                    checked="">
+                  <label class="form-check-label" for="gridRadios1">
+                    Attempt now <a href="/assessment.html?id=dsaj34oifd">here</a>
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="later"
+                    checked="">
+                  <label class="form-check-label" for="gridRadios2">
+                    Attempt later (within 48 hours)
+                  </label>
+                </div>
+              </div>
+              <div class="text-center">
+                <button type="submit" id="prevBtn" class="btn btn-custom">
+                  << Previous</button>
+                    <button type="submit" id="shareBtn" class="btn btn-custom">Share &nbsp;<i
+                        class="bi bi-share"></i></button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div id="notifier" class="alert alert-dark  text-light border-0 alert-dismissible fade show" role="alert">
+        <span></span>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+      <div class="popup">
+        <div class="card">
+          <button id="close">&times;</button>
+          <h5 class="card-title">Your application form is ready!</h5>
+          <h6>Copy this link and include it in your job posts now.</h6>
+          <br>
+          <div class="input-group mb-3">
+            <input type="text" class="form-control" id="url-send"
+              value="https://localhost/job-app-form.html?id=xsfdifDUx9Ov" disabled>
+            <button type="button" id="copy-btn" class="btn btn-custom"><i class="bi bi-clipboard"></i></button>
+          </div>
+        </div>
+      </div>
+      </div>
+      <script>
+        function getCookie(cname) {
+          let name = cname + "=";
+          let decodedCookie = decodeURIComponent(document.cookie);
+          let ca = decodedCookie.split(';');
+          for (let i = 0; i < ca.length; i++) {
+            let c = ca[i];
+            while (c.charAt(0) == ' ') {
+              c = c.substring(1);
+            }
+            if (c.indexOf(name) == 0) {
+              return c.substring(name.length, c.length);
+            }
+          }
+          return "";
+        }
+        $(document).ready(function () {
+          var requested = false;
+
+          $("#nextBtn").click(function (e) {
+            e.preventDefault();
+            $("#pg-2").show();
+            $("#pg-1").hide();
+          })
+          $("#prevBtn").click(function (e) {
+            e.preventDefault();
+            $("#pg-1").show();
+            $("#pg-2").hide();
+          })
+          $("#close").click(function (e) {
+            e.preventDefault();
+            $(".popup").hide();
+          })
+          $("#shareBtn").click(function (e) {
+            e.preventDefault();
+
+            var protocol = window.location.protocol === 'https:' ? 'https' : 'http';
+            var hostname = window.location.hostname;
+            var port = window.location.port;
+            var path = '/job-app-form.html?id=xsfdifDUx9Ov';
+            var socketURL = `${protocol}://${hostname}:${port}${path}`;
+            $("#url-send").val(socketURL);
+            $(".popup").show();
+            $(".popup .card").hide();
+            $(".popup .card").show(300);
+          })
+          $("#copy-btn").click(function (e) {
+            e.preventDefault();
+            var copyText = document.getElementById("url-send");
+            copyText.select();
+            copyText.setSelectionRange(0, 99999); // For mobile devices
+
+            // Copy the text inside the text field
+            navigator.clipboard.writeText(copyText.value);
+            $("#notifier span").html("Copied!")
+            $("#notifier").show();
+            setTimeout(function () {
+              $("#notifier").fadeOut();
+            }, 3000);
+          });
+          $("#criteria-input").focus(function (event) {
+            event.preventDefault();
+            const url = '/criteria-gen';
+            const formData = new FormData();
+            var jobTitle = $("#jobTitle").val();
+            var jobDesc = $("#jobDesc").val();
+            var jobReq = $("#jobReq").val();
+            if (!requested && jobTitle && jobDesc && jobReq && jobTitle.length > 0 && jobDesc.length > 0 && jobReq.length > 0) {
+              formData.append('job_title', jobTitle);
+              formData.append('job_desc', jobDesc);
+              formData.append('job_req', jobReq);
+              const fetchOptions = {
+                method: 'post',
+                body: formData,
+                headers: {
+                  "Authorization": "Bearer " + getCookie("access_token")
+                },
+              };
+              fetch(url, fetchOptions).then(response => {
+                if (response.ok) {
+                  return response.json();
+                } else {
+                  throw new Error('File upload failed');
+                }
+              })
+                .then(data => {
+                  console.log('Server response:', data);
+                  requested = true;
+                  $("#suggest-alert").show();
+                  $("#suggestionDiv").html("");
+                  for (i in data.message) {
+                    var x = `<button type="button" class="btn btn-outline-secondary mb-2">
+                ${data.message[i]}
+              </button>`;
+                    $("#suggestionDiv").append(x);
+                  }
+                })
+                .catch(error => {
+                  console.error('Error uploading file:', error);
+                });
+
+            }
+
+          });
+          $(document).on('click', '#suggestionDiv button', function (event) {
+
+            $("#criteria-list").append(`<button type="button" class="btn btn-secondary mb-2">
+                ${$.trim($(this).text())} <i class="bi bi-x-lg"></i>
+              </button>`);
+            $(this).remove();
+            if ($("#suggestionDiv button").length == 0) {
+              $("#suggest-alert").hide();
+            }
+          });
+          $(document).on('click', '#criteria-list button i', function (event) {
+            $(this).parent().remove();
+          });
+          $("#add-btn").click(function (event) {
+            event.preventDefault();
+            if ($.trim($("#criteria-input").val()).length == 0) {
+              return;
+            }
+            $("#criteria-list").append(`<button type="button" class="btn btn-secondary mb-2">
+                ${$.trim($("#criteria-input").val())} <i class="bi bi-x-lg"></i>
+              </button>`);
+            $("#criteria-input").val("");
+
+          });
+        });
+      </script>
+    </section>
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer" class="footer">
+    <div class="copyright">
+      &copy; Copyright <strong><span>VetNinja</span></strong>. All Rights Reserved
+    </div>
+    <div class="credits">
+      <!-- All the links in the footer should remain intact. -->
+      <!-- You can delete the links only if you purchased the pro version. -->
+      <!-- Licensing information: https://bootstrapmade.com/license/ -->
+      <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
+      Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+    </div>
+  </footer><!-- End Footer -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+      class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/chart.js/chart.umd.js"></script>
+  <script src="assets/vendor/echarts/echarts.min.js"></script>
+  <script src="assets/vendor/quill/quill.min.js"></script>
+  <script src="assets/vendor/simple-datatables/simple-datatables.js"></script>
+  <script src="assets/vendor/tinymce/tinymce.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>

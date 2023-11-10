@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Forms / Layouts - VetNinja Bootstrap Template</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+  <link href="https://fonts.gstatic.com" rel="preconnect">
+  <link
+    href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+    rel="stylesheet">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="assets/vendor/quill/quill.snow.css" rel="stylesheet">
+  <link href="assets/vendor/quill/quill.bubble.css" rel="stylesheet">
+  <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="assets/css/style.css" rel="stylesheet">
+  <style>
+    #main {
+      margin-left: 20%;
+      margin-right: 20%;
+    }
+  </style>
+  <style media="screen">
+    .popup {
+      background-color: rgba(255, 255, 255, 0.5);
+      position: fixed;
+      z-index: 9999;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+    }
+
+    .popup .card {
+      padding: 5px 40px 40px 40px;
+      border-radius: 8px;
+      position: absolute;
+      max-width: 650px;
+      min-height: max-content;
+      left: 10%;
+      right: 10%;
+      top: 10%;
+      margin: auto;
+      font-family: "Poppins", sans-serif;
+      text-align: center;
+
+    }
+
+    .popup #close {
+      display: block;
+      margin: 0 0 0 auto;
+      background-color: transparent;
+      font-size: 30px;
+      color: #701ec5;
+      border-radius: 100%;
+      width: 40px;
+      height: 40px;
+      border: none;
+      outline: none;
+      cursor: pointer;
+    }
+
+    .popup h2 {
+      margin-top: -20px;
+    }
+
+    .popup a {
+      text-decoration: underline;
+    }
+
+    .popup p {
+      font-size: 12px;
+      margin: 10px 0;
+    }
+
+    .drop-area {
+      border: 2px dashed #ccc;
+      padding: 20px;
+      color: #701ec5;
+
+      text-align: center;
+      cursor: pointer;
+    }
+
+    .drop-area i {
+      font-size: 30px;
+    }
+
+    #file-name {
+      border: 1px solid;
+      border-color: blue;
+      padding-left: 10px;
+      text-align: left;
+    }
+
+    #loading-spinner {
+      display: none;
+    }
+  </style>
+  <!-- =======================================================
+  * Template Name: VetNinja
+  * Updated: Sep 18 2023 with Bootstrap v5.3.2
+  * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body>
+  <div class="popup">
+    <div class="card">
+      <button id="close">&times;</button>
+      <h5 class="card-title">Step 1: Upload Resume</h5>
+      <h6>Our advanced document analysis tools will extract all relevant information and perform preliminary screening
+        at
+        the first place. <a href="#">Learn more</a></h6>
+      <input type="file" id="resume" style="display:none">
+      <div id="drop-area" class="drop-area">
+        <i class="bi bi-file-earmark-pdf-fill"></i>
+        <p>Drag & Drop your document here or click to browse.</p>
+      </div>
+      <p>By submitting your resume, you are agreeing to our Terms and Conditions. <a href="#">Learn how we protect your
+          data privacy</a></p>
+      <div class="d-flex justify-content-center">
+        <div class="spinner-border" id="loading-spinner" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      </div>
+      <div id="file-info" style="display: none">
+        <p id="file-name">File Name: </p>
+        <div class="text-center">
+          <button id="resumeSubmit" class="btn btn-primary">Submit</button>
+          <button id="resumeReset" class="btn btn-secondary">Reset</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="jobForm">
+    <main id="main" class="main">
+
+      <div class="pagetitle">
+        <h1 id="companyTitle">ABC Company - Event Manager Application Form</h1>
+
+      </div><!-- End Page Title -->
+      <section class="section">
+        <div class="row">
+
+          <div id="pg-2" class="card" id="verify">
+            <div class="card-body">
+              <h5 class="card-title">Step 2: Verify your personal information</h5>
+
+              <!-- Vertical Form -->
+              <form id="app-form" class="row g-3">
+                <div class="form-group col-12">
+                  <label for="inputName" class="form-label">Your Name</label>
+                  <input type="text" name="name" class="form-control" id="inputName">
+                </div>
+                <div class="form-group col-12">
+                  <label for="inputEmail" class="form-label">Email</label>
+                  <input type="email" name="email" class="form-control" id="inputEmail">
+                </div>
+                <div class="form-group col-12">
+                  <label for="inputGender" class="form-label">Gender</label>
+                  <select class="form-select" id="inputGender" name="gender">
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="other">Other</option>
+                  </select>
+                </div>
+                <div class="form-group col-12">
+                  <label for="inputURL" class="form-label">LinkedIn URL</label>
+                  <input type="url" name="url" class="form-control" id="inputURL">
+                </div>
+
+                <div class="form-group col-12">
+                  <label for="inputPhone" class="form-label">Phone Number</label>
+                  <input type="text" class="form-control" name="phone" id="inputPhone">
+                </div>
+                <div class="form-group col-12">
+                  <label for="inputAddress" class="form-label">Address</label>
+                  <input type="text" class="form-control" name="address" id="inputAddress" placeholder="1234 Main St">
+                </div>
+                <div class="form-group col-12">
+                  <label for="inputWorkMode" class="form-label">Preferred Working Mode:</label>
+                  <select class="form-select" id="inputWorkMode" name="working_mode">
+                    <option value="male">Work from home</option>
+                    <option value="female">At office</option>
+                    <option value="other">Hybrid</option>
+                  </select>
+                </div>
+                <div class="form-group col-12">
+                  <label for="studyArea" class="form-label">Area of Study</label>
+                  <input type="text" name="studyArea" class="form-control" id="studyArea">
+                </div>
+
+                <div class="form-group col-12">
+                  <label for="uni" class="form-label">Graduated University</label>
+                  <input type="text" name="uni" class="form-control" id="uni">
+                </div>
+
+                <div class="form-group col-12">
+                  <label for="cgpa" class="form-label">Latest CGPA</label>
+                  <input type="text" name="cgpa" class="form-control" id="cgpa">
+                </div>
+                <div class="form-group col-12">
+                  <label for="exp" class="form-label">Working Experience</label>
+                  <input type="text" name="exp" class="form-control" id="exp">
+                </div>
+
+                <div class="form-group col-12">
+                  <label for="projs" class="form-label">Projects</label>
+                  <input type="text" name="projs" class="form-control" id="projs">
+                </div>
+
+                <div class="form-group col-12">
+                  <label for="extra" class="form-label">Extra Document</label>
+                  <input type="file" class="form-control" id="extra" name="extra_document">
+                </div>
+                <p>Open-ended Assessment</p>
+                <a class="p-0 m-0" href="/assessment.html" target="_blank">
+                  <button type="button" class="btn btn-outline-success w-100">Start</button></a>
+                <div class="text-center">
+                  <button type="submit" class="btn btn-custom">Submit</button>
+                  <button type="reset" class="btn btn-secondary">Reset</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main><!-- End #main -->
+
+    <!-- ======= Footer ======= -->
+    <footer id="footer" class="footer">
+      <div class="copyright">
+        &copy; Copyright <strong><span>VetNinja</span></strong>. All Rights Reserved
+      </div>
+      <div class="credits">
+        <!-- All the links in the footer should remain intact. -->
+        <!-- You can delete the links only if you purchased the pro version. -->
+        <!-- Licensing information: https://bootstrapmade.com/license/ -->
+        <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
+        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+      </div>
+    </footer><!-- End Footer -->
+
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+        class="bi bi-arrow-up-short"></i></a>
+  </div>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/chart.js/chart.umd.js"></script>
+  <script src="assets/vendor/echarts/echarts.min.js"></script>
+  <script src="assets/vendor/quill/quill.min.js"></script>
+  <script src="assets/vendor/simple-datatables/simple-datatables.js"></script>
+  <script src="assets/vendor/tinymce/tinymce.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="assets/js/main.js"></script>
+
+
+  <script>
+    function getCookie(cname) {
+      let name = cname + "=";
+      let decodedCookie = decodeURIComponent(document.cookie);
+      let ca = decodedCookie.split(';');
+      for (let i = 0; i < ca.length; i++) {
+        let c = ca[i];
+        while (c.charAt(0) == ' ') {
+          c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+          return c.substring(name.length, c.length);
+        }
+      }
+      return "";
+    }
+    $(document).ready(function () {
+      var access_token = getCookie("access_token");
+      if (access_token == "" || access_token == undefined || access_token == "undefined") {
+        $.post("/guestlogin", {
+          username: "guest",
+          password: "1234"
+        },
+          function (data, status) {
+            console.log("Data: " + data + "\nStatus: " + status);
+            document.cookie = "access_token=" + data.access_token + "; path=/";
+          });
+
+      }
+    });
+    document.querySelector("#close").addEventListener("click", function () {
+      document.querySelector(".popup").style.display = "none";
+      displayInfo();
+    });
+
+    $("#verify").hide();
+
+    const dropArea = document.getElementById("drop-area");
+    const fileInfo = document.getElementById("file-info");
+    const fileName = document.getElementById("file-name");
+    const submitFileButton = document.getElementById("resumeSubmit");
+    const resetFileButton = document.getElementById("resumeReset");
+    const resumeInput = document.getElementById("resume");
+
+    let uploadedFile = null;
+
+    // Prevent default behavior to open the file in the browser
+    dropArea.addEventListener("dragover", (e) => {
+      e.preventDefault();
+    });
+
+    // Handle file drop
+    dropArea.addEventListener("drop", (e) => {
+      e.preventDefault();
+      const file = e.dataTransfer.files[0];
+      handleFile(file);
+    });
+
+    // Handle file selection using the file input
+    dropArea.addEventListener("click", () => {
+      resumeInput.click();
+    });
+
+    resumeInput.addEventListener("change", (e) => {
+      const file = e.target.files[0];
+      handleFile(file);
+    });
+
+    function handleFile(file) {
+      if (file) {
+        dropArea.style.display = "none";
+        fileName.textContent = "File Name: " + file.name;
+        fileInfo.style.display = "block";
+
+        // Add an event listener to the submit button (you can add your logic here)
+        submitFileButton.addEventListener("click", () => {
+          // Check if a file has been uploaded
+          if (file) {
+            // Add your logic to handle the file submission here
+            console.log("Submitting file: " + file.name);
+            const url = '/uploads';
+            console.log(file)
+            // const file = document.getElementById("resume").files[0];
+            const formData = new FormData();
+            formData.append('file', file);
+            const fetchOptions = {
+              method: 'post',
+              body: formData,
+              headers: {
+                "Authorization": "Bearer " + getCookie("access_token")
+              },
+            };
+
+            $("#loading-spinner").show();
+            fetch(url, fetchOptions).then(response => {
+              if (response.ok) {
+                return response.json();
+              } else {
+                throw new Error('File upload failed');
+              }
+            })
+              .then(data => {
+                console.log('Server response:', data);
+
+                $(".popup").hide();
+                $("#loading-spinner").hide();
+                // Display the file name and show the submit and reset buttons
+                displayInfo(data.message);
+              })
+              .catch(error => {
+                console.error('Error uploading file:', error);
+              });
+
+          }
+        });
+
+        resetFileButton.addEventListener("click", () => {
+          // Clear the uploaded file and reset the UI
+          uploadedFile = null;
+          fileInfo.style.display = "none";
+          fileName.textContent = "File Name: ";
+          dropArea.style.display = "block";
+          resumeInput.value = "";
+        });
+      }
+    }
+    $("#app-form").submit(function (e) {
+      e.preventDefault();
+      // Get form data
+      var formData = new FormData(this);
+      console.log(formData);
+      var url = '/app-form-submission';
+      const fetchOptions = {
+        method: 'post',
+        body: formData,
+        headers: {
+          "Authorization": "Bearer " + getCookie("access_token")
+        },
+      };
+
+      fetch(url, fetchOptions).then(response => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          throw new Error('File upload failed');
+        }
+      })
+        .then(data => {
+          console.log('Server response:', data);
+
+
+        })
+        .catch(error => {
+          console.error('Error uploading file:', error);
+        });
+
+    })
+
+    function displayInfo(message) {
+      //console.log(jobApplicationsData.job_applications.app1001.company_name);
+
+      var fullName = message.fullName;
+      var email = message.email;
+      var phoneNum = message.contactNo;
+      var gender = message.gender;
+      var linkedinUrl = message.linkedinUrl;
+      var areaOfStudy = message.areaOfStudy;
+      var university = message.university;
+      var latestCGPA = message.latestCGPA;
+      var workingExperience = message.workingExperience;
+      var projects = message.projects;
+
+      $("#inputName").val(fullName);
+      $("#inputPhone").val(phoneNum);
+      $("#inputEmail").val(email);
+      $("#inputURL").val(linkedinUrl);
+      $("#studyArea").val(areaOfStudy);
+      $("#uni").val(university);
+      $("#cgpa").val(latestCGPA);
+      $("#exp").val(workingExperience);
+      $("#projs").val(projects);
+
+
+
+
+
+
+
+
+
+    }
+
+  </script>
+
+
+</body>
+
+</html>

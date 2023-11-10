@@ -1,0 +1,15 @@
+fastapi
+python-jose[cryptography]
+websockets
+uvicorn
+python-multipart
+passlib
+google-generativeai
+google-cloud-texttospeech
+google-cloud-speech
+mutagen
+chromadb
+pandas
+azure-ai-formrecognizer
+tabulate
+firebase-admin

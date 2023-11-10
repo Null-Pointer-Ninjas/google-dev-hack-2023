@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Event Manager Applications - VetNinja</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Data tables-->
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.css" />
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.gstatic.com" rel="preconnect">
+  <link
+    href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+    rel="stylesheet">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="assets/vendor/quill/quill.snow.css" rel="stylesheet">
+  <link href="assets/vendor/quill/quill.bubble.css" rel="stylesheet">
+  <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="assets/css/style.css" rel="stylesheet">
+  <style>
+  </style>
+  <style>
+    .datatable-wrapper.no-footer .datatable-container {
+      overflow-x: auto;
+      text-align: left;
+    }
+
+    #simulation {
+      box-shadow: none;
+      background: white;
+      border-radius: 20px;
+      position: fixed;
+      max-height: 90%;
+      bottom: 5px;
+      box-shadow: 0px 0 30px rgba(1, 41, 112, 0.1);
+      right: 15px;
+      z-index: 999;
+      overflow: hidden;
+    }
+
+    .card-body.holder {
+      overflow-y: auto;
+      max-height: 100%;
+      padding: 5px;
+    }
+
+    .card-body.client {
+      background-color: #dac4f1;
+      color: black;
+      padding: 20px;
+      box-shadow: 0px 0 30px rgba(1, 41, 112, 0.1);
+      width: 70%;
+      float: right;
+      box-shadow: 0px 0 30px rgba(1, 41, 112, 0.1);
+    }
+
+    .card-body.server {
+      background-color: #ffffff;
+      padding: 20px;
+      width: 90%;
+      box-shadow: 0px 0 30px rgba(1, 41, 112, 0.1);
+    }
+
+    #simulation .list-group-item {
+
+      border: none;
+      background: none;
+    }
+
+    #simulation #textSender:disabled {
+      border: none;
+      filter: grayscale();
+    }
+
+    #copilot #options {
+      margin: auto;
+    }
+
+    #simulation .card-title {
+      font-family: "Nunito", sans-serif;
+      font-weight: bold;
+      padding: 0;
+      margin: 0;
+    }
+
+    #simulation .card-title img {
+
+      margin-left: 5px;
+    }
+
+    #simulation .card-title button {
+      float: right;
+      color: #701ec5;
+      padding: 10px;
+      margin-right: 5px;
+      font-size: 20px;
+    }
+
+    #copilot #options {
+      display: flex;
+      flex-direction: row;
+      justify-content: end;
+    }
+
+    #copilot #options button {
+      margin: 5px;
+      border-radius: 5px;
+      transition: ease 1s;
+    }
+
+    #textSender {
+      padding: 4px;
+    }
+
+    #copilot #progress-options {
+      display: none;
+      margin: auto;
+      width: max-content;
+    }
+
+    #copilot #options button:hover,
+    #copilot #progress-options button:hover {
+      color: #701ec5;
+      background: white;
+      box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.1);
+    }
+
+    #copilot .btn.btn-outline-primary {
+      color: #701ec5;
+      border-color: #701ec5;
+    }
+
+    @media (min-width: 576px) {
+      .col-chatroom {
+        width: 450px;
+        /* Set a fixed width for larger screens (e.g., sm and above) */
+      }
+    }
+
+    #copilot p {
+      margin: auto;
+      text-align: center;
+      margin-bottom: 5px;
+    }
+  </style>
+  <!-- =======================================================
+  * Template Name: VetNinja
+  * Updated: Sep 18 2023 with Bootstrap v5.3.2
+  * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body>
+  <!-- ======= Header ======= -->
+  <header id="header" class="header fixed-top d-flex align-items-center">
+
+    <div class="d-flex align-items-center justify-content-between">
+      <a href="index.html" class="logo d-flex align-items-center">
+        <img src="assets/img/logo.png" alt="">
+        <span class="d-none d-lg-block">VetNinja</span>
+      </a>
+      <i class="bi bi-list toggle-sidebar-btn"></i>
+    </div><!-- End Logo -->
+
+    <div class="search-bar">
+      <form class="search-form d-flex align-items-center" method="POST" action="#">
+        <input type="text" name="query" placeholder="Search" title="Enter search keyword">
+        <button type="submit" title="Search"><i class="bi bi-search"></i></button>
+      </form>
+    </div><!-- End Search Bar -->
+
+    <nav class="header-nav ms-auto">
+      <ul class="d-flex align-items-center">
+
+        <li class="nav-item d-block d-lg-none">
+          <a class="nav-link nav-icon search-bar-toggle " href="#">
+            <i class="bi bi-search"></i>
+          </a>
+        </li><!-- End Search Icon-->
+
+        <li class="nav-item dropdown">
+
+          <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
+            <i class="bi bi-bell"></i>
+            <span class="badge bg-primary badge-number">4</span>
+          </a><!-- End Notification Icon -->
+
+          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
+            <li class="dropdown-header">
+              You have 2 new notifications
+              <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+
+            <li class="notification-item">
+              <i class="bi bi-exclamation-circle text-warning"></i>
+              <div>
+                <h4>Jobs</h4>
+                <p>You have reached 100 candidates for Job Event Manager</p>
+                <p>30 min. ago</p>
+              </div>
+            </li>
+
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            <li class="notification-item">
+              <i class="bi bi-exclamation-circle text-warning"></i>
+              <div>
+                <h4>Promotions</h4>
+                <p>You received 30% discount for the next purchase!</p>
+                <p>30 min. ago</p>
+              </div>
+            </li>
+
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            <li class="dropdown-footer">
+              <a href="#">Show all notifications</a>
+            </li>
+
+          </ul><!-- End Notification Dropdown Items -->
+
+        </li><!-- End Notification Nav -->
+
+        <li class="nav-item dropdown pe-3">
+
+          <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
+            <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
+            <span class="d-none d-md-block dropdown-toggle ps-2">John Doe</span>
+          </a><!-- End Profile Iamge Icon -->
+
+          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+            <li class="dropdown-header">
+              <h6>John Doe</h6>
+              <span>Web Designer</span>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+
+            <li>
+              <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+                <i class="bi bi-person"></i>
+                <span>My Profile</span>
+              </a>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+
+            <li>
+              <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+                <i class="bi bi-gear"></i>
+                <span>Account Settings</span>
+              </a>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+
+            <li>
+              <a class="dropdown-item d-flex align-items-center" href="pages-faq.html">
+                <i class="bi bi-question-circle"></i>
+                <span>Need Help?</span>
+              </a>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+
+            <li>
+              <a class="dropdown-item d-flex align-items-center" href="#">
+                <i class="bi bi-box-arrow-right"></i>
+                <span>Sign Out</span>
+              </a>
+            </li>
+
+          </ul><!-- End Profile Dropdown Items -->
+        </li><!-- End Profile Nav -->
+
+      </ul>
+    </nav><!-- End Icons Navigation -->
+
+  </header><!-- End Header -->
+  <!-- ======= Sidebar ======= -->
+  <aside id="sidebar" class="sidebar">
+    <ul class="sidebar-nav" id="sidebar-nav">
+      <li class="nav-item">
+        <a class="nav-link " href="index.html">
+          <i class="bi bi-house-fill"></i>
+          <span>Home</span>
+        </a>
+      </li><!-- End Dashboard Nav -->
+      <li class="nav-heading">Pages</li>
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="users-profile.html">
+          <i class="bi bi-bag-fill"></i>
+          <span>Jobs</span>
+        </a>
+      </li><!-- End Profile Page Nav -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="pages-faq.html">
+          <i class="bi bi-question-circle"></i>
+          <span>F.A.Q</span>
+        </a>
+      </li><!-- End F.A.Q Page Nav -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="pages-contact.html">
+          <i class="bi bi-envelope"></i>
+          <span>Contact</span>
+        </a>
+      </li><!-- End Contact Page Nav -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="pages-register.html">
+          <i class="bi bi-card-list"></i>
+          <span>Account</span>
+        </a>
+      </li><!-- End Register Page Nav -->
+    </ul>
+  </aside><!-- End Sidebar-->
+
+  <main id="main" class="main">
+
+    <div class="pagetitle">
+      <h1>ABC Company - Event Manager Applicants</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item active">Track</li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+    <section class="section">
+      <div class="row">
+        <div class="col-lg-8">
+
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Candidates (Last update: 5/11/2023 5pm)</h5>
+
+              <!-- Table with stripped rows -->
+              <table id="cand-data">
+                <thead>
+                  <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Full Name</th>
+                    <th scope="col">VN Score</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                </tbody>
+              </table>
+              <!-- End Table with stripped rows -->
+              <script>
+
+                function getCookie(cname) {
+                  let name = cname + "=";
+                  let decodedCookie = decodeURIComponent(document.cookie);
+                  let ca = decodedCookie.split(';');
+                  for (let i = 0; i < ca.length; i++) {
+                    let c = ca[i];
+                    while (c.charAt(0) == ' ') {
+                      c = c.substring(1);
+                    }
+                    if (c.indexOf(name) == 0) {
+                      return c.substring(name.length, c.length);
+                    }
+                  }
+                  return "";
+                }
+                $.ajax({
+                  type: "POST",
+                  url: "/applicants",
+                  dataType: "json",
+                  beforeSend: function (xhr) {
+                    xhr.setRequestHeader("Authorization", "Bearer " + getCookie("access_token"));
+                  },
+                  success: function (data) {
+                    // Assuming data is an array of objects
+                    var i = 1;
+                    $("#cand-data tbody").html("");
+                    // Loop through the data and append it to the table
+                    $.each(data, function (index, item) {
+                      console.log(data, item)
+                      var row = $("<tr>");
+                      row.append($("<td scope='row'>").text(i++));
+                      row.append($("<td>").text(item.fullName));
+                      var status = undefined;
+                      var stat_str;
+                      if (item.assessmentScore > 60) {
+                        status = "success";
+                        stat_str = "PASS";
+                      }
+                      else if (item.assessmentScore > 30) {
+                        status = "warning";
+                        stat_str = "PENDING";
+                      }
+                      else {
+                        status = "danger";
+                        stat_str = "FAILED";
+                      }
+                      row.append($("<td>").text(item.assessmentScore));
+
+                      row.append($("<td>").html(`<span class="badge rounded-pill w-100  bg-${status}">${stat_str}</span>`));
+                      row.append($("<td>").html(`<a href='/candidate-profile.html?q=${i}'>more</a>`));
+                      $("#cand-data tbody").append(row);
+                    });
+
+                    $("#cand-data").DataTable();
+                  },
+                  error: function (xhr, status, error) {
+                    console.error("Error: " + error);
+                  }
+                });
+              </script>
+            </div>
+          </div>
+
+        </div>
+        <!-- ChatRoom -->
+
+        <div id="simulation" class="card col-sm-6 min-w-50 col-chatroom">
+          <div class="card-title">
+            <img src="assets/img/logo.png" alt="">
+            VN Copilot
+            <button id="copilot-close" type="submit" class="btn"><i class="bi bi-power"></i></button>
+
+          </div>
+
+          <div class="card-body holder">
+
+            <ul id='messages' class="list-group">
+              <li class="list-group-item">
+              </li>
+            </ul>
+
+          </div>
+          <form id="copilot">
+            <div id="progress-options" class="input-group mb-3">
+              <button type="button" class="btn btn-outline-primary mx-auto"><i
+                  class="bi bi-stop-fill"></i>&nbsp;&nbsp;Stop
+                Responding</button>
+            </div>
+            <div id="options" class="input-group mb-3">
+              <button type="button" class="btn btn-outline-primary">Summarise Candidates</button>
+              <button type="button" class="btn btn-outline-primary">Correct Your Marking</button>
+            </div>
+            <div class="input-group p-1 mb-3">
+              <input type="text" class="form-control" id="messageText" autocomplete="off"
+                placeholder="Ask me anything...">
+              <div class="input-group-append">
+                <button class="btn" id="textSender" type="submit"><img width="40px" src="assets/img/send.svg"
+                    alt=""></button>
+              </div>
+            </div>
+            <p>AI generated responses may not be accurate.</p>
+
+          </form>
+
+          <div id="audioDiv"></div>
+
+        </div>
+        <script>
+          $(document).ready(function () {
+            var q = 0;
+            // var q = confirm("Use audio mode? ") ? 1 : 0;
+            if (q) {
+              $("#textBox").hide();
+            } else
+              $("#recorder").hide();
+            var protocol = window.location.protocol === 'https:' ? 'wss' : 'ws';
+            var hostname = window.location.hostname;
+            var port = window.location.port;
+            var socket = undefined;
+            function startSession() {
+              var path = '/assessment';
+              var socketURL = `${protocol}://${hostname}:${port}${path}`;
+              socket = new WebSocket(socketURL);
+
+              socket.onopen = function (event) {
+                console.log("Opened!");
+              }
+              socket.onerror = function () {
+                alert("Please login to proceed");
+                location.replace("/login.html");
+              }
+              socket.onmessage = function (event) {
+
+                var isJSON = true;
+                try {
+                  JSON.parse(event.data);
+                } catch (e) {
+                  isJSON = false;
+                }
+                var contentData = "";
+                if (isJSON) {
+                  var response = JSON.parse(event.data);
+                  if ('progress' in response) {
+                    $('#progress').css('width', 100 * response.progress + '%');
+                  }
+                  else {
+                    console.log(response)
+                    var display = response.message.replace(/\*(.*?)\*/g, '<b>$1</b>');
+
+                    $("#simulation #textSender").attr("disabled", false);
+                    $("#progress-options").hide();
+                    $("#options").show();
+                    var message = `
+                  <li class="list-group-item">
+                    <div class="card-body server">
+                      ${display}
+                    </div>
+                  </li>`;
+                    $('#messages').append(message);
+                    $(".card-body.holder").animate({ scrollTop: $(".card-body.holder")[0].scrollHeight }, 1000);
+
+                  }
+
+                }
+              };
+
+            }
+            startSession();
+            $("#copilot-close").click(function (e) {
+              e.preventDefault();
+              if ($("#copilot").attr('status') == 'closed') {
+                $(".card-body.holder").show(600);
+                $("#copilot").show(600);
+                $("#copilot-close").css('color', '#701ec5');
+                $("#copilot").attr('status', 'open');
+              }
+              else {
+                $(".card-body.holder").hide(600);
+                $("#copilot").hide(600);
+                $("#copilot-close").css('color', '#999');
+                $("#copilot").attr('status', 'closed');
+              }
+            });
+            $("#options button").click(function (event) {
+              event.preventDefault();
+              $("#messageText").val($(this).text())
+              submitQuest();
+              $("#simulation #textSender").attr("disabled", true);
+
+            });
+            $("#simulation #textSender").click(function (event) {
+              event.preventDefault();
+              submitQuest();
+              $(this).attr("disabled", true);
+            });
+            function submitQuest() {
+              var input = $("#messageText").val()
+              if (input.length == 0)
+                return;
+              socket.send(input)
+              var message = `
+                  <li class="list-group-item">
+                    <div class="card-body client">
+                      ${input}
+                    </div>
+                  </li>`;
+              $('#messages').append(message);
+              $("#messageText").val("");
+              $("#progress-options").show();
+              $("#options").hide();
+            }
+
+          });
+        </script>
+        <!-- End ChatRoom -->
+      </div>
+    </section>
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer" class="footer">
+    <div class="copyright">
+      &copy; Copyright <strong><span>VetNinja</span></strong>. All Rights Reserved
+    </div>
+    <div class="credits">
+      <!-- All the links in the footer should remain intact. -->
+      <!-- You can delete the links only if you purchased the pro version. -->
+      <!-- Licensing information: https://bootstrapmade.com/license/ -->
+      <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
+      Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+    </div>
+  </footer><!-- End Footer -->
+
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/chart.js/chart.umd.js"></script>
+  <script src="assets/vendor/echarts/echarts.min.js"></script>
+  <script src="assets/vendor/quill/quill.min.js"></script>
+  <script src="assets/vendor/simple-datatables/simple-datatables.js"></script>
+  <script src="assets/vendor/tinymce/tinymce.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+
+  <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>
