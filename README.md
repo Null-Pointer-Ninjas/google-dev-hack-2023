@@ -9,7 +9,10 @@
 - System Designer and Analyst: Teoh Zhen Quan (https://github.com/benteoh0707)
 
 # Installations
-To deploy locally, try: uvicorn main:app
+- Run pip install -r requirements.txt.
+- To deploy locally, try: uvicorn main:app
+
+# Quick Description
 1. main.py is the entry point
 2. utils/resume_io.py contains main resume screening functions
 3. scene/base.py is the context for both Interviewer and Judge
