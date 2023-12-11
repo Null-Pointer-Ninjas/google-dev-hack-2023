@@ -2,10 +2,11 @@
 This is a public repository of our project, VetNinja in the Google DevHack 2023 Hackathon.
 
 # Contributors
-Ng Jing Ying: https://github.com/NGOLDWEEKLY
-Khoo Zi Yi: https://github.com/ziyikhoo456
-So Xin Yuan: https://github.com/Xinyuanso
-Teoh Zhen Quan: https://github.com/benteoh0707
+- Team lead and Python developer: Ng Jing Ying (https://github.com/NGOLDWEEKLY)
+- UI/UX Designer: Khoo Zi Yi (https://github.com/ziyikhoo456)
+- Business Analyst: So Xin Yuan (https://github.com/Xinyuanso)
+- System Designer and Analyst: Teoh Zhen Quan (https://github.com/benteoh0707)
+
 # Installations
 To deploy locally, try: uvicorn main:app
 1. main.py is the entry point
