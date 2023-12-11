@@ -1,5 +1,6 @@
 # About
-This is a public repository of our project, VetNinja in the Google DevHack 2023 Hackathon.
+- Checkout our official pitch! :) https://www.youtube.com/watch?v=aIve0GhuvUI
+- This is a public repository of our project, VetNinja in the Google DevHack 2023 Hackathon.
 
 # Contributors
 - Team lead and Python developer: Ng Jing Ying (https://github.com/NGOLDWEEKLY)
